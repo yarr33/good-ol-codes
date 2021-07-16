@@ -7,7 +7,7 @@ from pygame import error as pygameError
 
 mixer.init()
 
-debug = False
+debug = True
 file = ""
 userpath = os.path.expanduser("~")
 playedFiles = []
@@ -33,12 +33,12 @@ def randomFile(Dir):
 
     try:
         fileName = random.choice(os.listdir(Dir))
-        if ( os.path.isdir(Dir + "\\" + fileName) ):
-            randomFile(Dir + "\\" + fileName)
+        if ( os.path.isdir(Dir + os.path.sep + fileName) ):
+            randomFile(Dir + os.path.sep + fileName)
         else:
             gotFormat = fileName.split(".")[-1]
-            if gotFormat in formats and not((Dir + "\\" + fileName) in playedFiles):
-                file = (Dir + "\\" + fileName)
+            if gotFormat in formats and not((Dir + os.path.sep + fileName) in playedFiles):
+                file = (Dir + os.path.sep + fileName)
                 playedFiles.append(file)
     except (IndexError, PermissionError) as exception:
         randomFile(userpath)
@@ -48,4 +48,3 @@ while True:
     while file == "":
         randomFile(userpath)
     playFile(file)
-
