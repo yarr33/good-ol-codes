@@ -1,6 +1,5 @@
 import os
 import random
-import time
 
 from pygame.mixer import music
 from pygame import mixer
@@ -38,7 +37,6 @@ def randomFile(Dir):
             randomFile(Dir + "\\" + fileName)
         else:
             gotFormat = fileName.split(".")[-1]
-            time.sleep(0.001)
             if gotFormat in formats and not((Dir + "\\" + fileName) in playedFiles):
                 file = (Dir + "\\" + fileName)
                 playedFiles.append(file)
